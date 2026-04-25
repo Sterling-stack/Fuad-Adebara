@@ -1,0 +1,77 @@
+{
+  "entities": {
+    "Project": {
+      "title": "Project",
+      "description": "A portfolio project showcasing Fuad's work.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "category": { "type": "string" },
+        "description": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "liveUrl": { "type": "string" },
+        "githubUrl": { "type": "string" },
+        "order": { "type": "number" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["title", "category", "description", "imageUrl"]
+    },
+    "Skill": {
+      "title": "Skill",
+      "description": "A technical or professional skill.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "percentage": { "type": "number" },
+        "order": { "type": "number" }
+      },
+      "required": ["name", "percentage"]
+    },
+    "Service": {
+      "title": "Service",
+      "description": "A professional service offered by Fuad.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "iconName": { "type": "string" },
+        "order": { "type": "number" }
+      },
+      "required": ["title", "description", "iconName"]
+    },
+    "Testimonial": {
+      "title": "Testimonial",
+      "description": "Client feedback and quotes.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "role": { "type": "string" },
+        "quote": { "type": "string" },
+        "avatarUrl": { "type": "string" },
+        "rating": { "type": "number" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "role", "quote", "rating"]
+    },
+    "ContactSubmission": {
+      "title": "Contact Submission",
+      "description": "Messages sent from the contact form.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "subject": { "type": "string" },
+        "message": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "email", "subject", "message"]
+    }
+  },
+  "firestore": {
+    "projects": { "schema": "Project", "description": "Collection of projects." },
+    "skills": { "schema": "Skill", "description": "Collection of skills." },
+    "services": { "schema": "Service", "description": "Collection of services." },
+    "testimonials": { "schema": "Testimonial", "description": "Collection of testimonials." },
+    "submissions": { "schema": "ContactSubmission", "description": "Contact form messages." }
+  }
+}
