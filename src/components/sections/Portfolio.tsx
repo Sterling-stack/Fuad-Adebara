@@ -14,67 +14,51 @@ const defaultProjects = [
 
 export default function Portfolio() {
   return (
-    <section id="portfolio" className="py-24 bg-background relative">
+    <section id="portfolio" className="py-24 bg-background relative border-t border-white/10">
       <div className="container mx-auto px-6">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-24 gap-6">
           <div className="space-y-4">
-            <span className="text-primary font-bold tracking-widest uppercase text-xs">Portfolio</span>
-            <h2 className="text-4xl md:text-5xl font-serif font-bold tracking-tight text-slate-900 dark:text-white">Featured Projects</h2>
+            <h2 className="text-6xl md:text-7xl font-serif tracking-tight uppercase text-white">RELIABLE <span className="text-primary italic">WORKS</span></h2>
           </div>
-          <p className="text-slate-600 dark:text-slate-400 max-w-md">
-            A selection of my best work across various disciplines, ranging from web development to brand strategy.
+          <p className="text-slate-400 max-w-sm text-sm font-medium tracking-tight">
+            Explore my latest web design launches and discover how I can transform your vision into a digital reality.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {defaultProjects.map((project, idx) => (
+        <div className="grid grid-cols-1 gap-16">
+          {[
+            { id: '01', title: 'ECOMMERCE HUB', category: 'E-commerce', year: '2025', desc: 'Fully optimized digital marketplace', image: 'https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&q=80&w=1200&h=600' },
+            { id: '02', title: 'SaaS LANDING', category: 'Web Design', year: '2024', desc: 'Conversion-focused SaaS platform', image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200&h=600' },
+            { id: '03', title: 'PORTFOLIO PRO', category: 'Creative Web', year: '2024', desc: 'Minimalist portfolio for creative agency', image: 'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?auto=format&fit=crop&q=80&w=1200&h=600' },
+          ].map((project, idx) => (
             <motion.div
               key={project.id}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
-              whileHover={{ y: -10 }}
-              className="group relative bg-white dark:bg-slate-900 rounded-3xl overflow-hidden shadow-card border border-slate-100 dark:border-slate-800"
+              className="space-y-6"
             >
-              <div className="aspect-video relative overflow-hidden bg-slate-50 dark:bg-slate-950">
-                <div className="absolute inset-0 bg-gradient-primary opacity-5 group-hover:opacity-10 transition-opacity duration-500" />
-                <div className="absolute inset-0 flex items-center justify-center text-5xl font-serif font-bold text-primary/10 group-hover:scale-125 transition-transform duration-700 select-none">
-                  {project.id}
-                </div>
-                
-                {/* Overlay Links */}
-                <div className="absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center space-x-4 backdrop-blur-[2px]">
-                  <motion.button
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    className="p-4 bg-white text-primary rounded-full shadow-elegant"
-                  >
-                    <ExternalLink className="w-5 h-5" />
-                  </motion.button>
-                  <motion.button
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    className="p-4 bg-white text-primary rounded-full shadow-elegant"
-                  >
-                    <Github className="w-5 h-5" />
-                  </motion.button>
-                </div>
+              <div className="aspect-[21/9] relative overflow-hidden rounded-3xl bg-secondary border border-white/5">
+                <img 
+                  src={project.image} 
+                  alt={project.title}
+                  className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 hover:scale-105 opacity-80 hover:opacity-100"
+                />
               </div>
 
-              <div className="p-8 space-y-4">
-                <div className="flex items-center justify-between">
-                  <Badge variant="outline" className="text-primary border-primary/20 bg-orange-50 dark:bg-orange-950/20 uppercase tracking-widest text-[9px] font-bold px-3 py-1">
+              <div className="flex flex-wrap items-center justify-between gap-4 pt-2">
+                <div className="space-y-1">
+                  <h3 className="text-xl font-bold uppercase tracking-widest text-white">{project.title}</h3>
+                  <p className="text-[11px] text-slate-500 uppercase tracking-widest">{project.desc}</p>
+                </div>
+                
+                <div className="flex items-center space-x-8">
+                  <span className="text-[11px] font-bold text-slate-600">{project.year}</span>
+                  <Badge className="bg-primary text-white hover:bg-primary/80 rounded-full px-4 py-1 text-[9px] uppercase tracking-widest font-bold">
                     {project.category}
                   </Badge>
-                  <span className="text-xs font-mono text-slate-400 font-bold">{project.id}</span>
                 </div>
-                <h3 className="text-2xl font-bold font-serif text-slate-900 dark:text-white group-hover:text-primary transition-colors">
-                  {project.title}
-                </h3>
-                <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed line-clamp-2">
-                  {project.desc}
-                </p>
               </div>
             </motion.div>
           ))}

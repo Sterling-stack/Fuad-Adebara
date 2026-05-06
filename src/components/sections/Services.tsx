@@ -38,44 +38,54 @@ const services = [
 
 export default function Services() {
   return (
-    <section id="services" className="py-24 bg-slate-50 dark:bg-slate-900/50 relative">
+    <section id="services" className="py-32 bg-background relative border-t border-white/10">
       <div className="container mx-auto px-6">
-        <div className="text-center space-y-4 mb-16">
-          <span className="text-primary font-bold tracking-widest uppercase text-xs">Services</span>
-          <h2 className="text-4xl md:text-5xl font-serif font-bold tracking-tight text-slate-900 dark:text-white">How I Can Help You</h2>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-24">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-6xl md:text-7xl font-serif leading-tight uppercase tracking-tight text-white">Digital <br/> Mastery</h2>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="flex items-end"
+          >
+            <p className="text-slate-400 max-w-sm text-sm font-medium leading-relaxed">
+              I provide specialized web design services that combine high-performance code with avant-garde aesthetics.
+            </p>
+          </motion.div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service, idx) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-20">
+          {[
+            { title: 'Web Architecture', desc: 'Building the skeletal structure of high-performance websites.' },
+            { title: 'Responsive Design', desc: 'Crafting interfaces that adapt beautifully to every single device.' },
+            { title: 'UI Engineering', desc: 'Implementing pixel-perfect components with smooth interactions.' },
+            { title: 'SEO Strategy', desc: 'Optimizing sites for maximum visibility and search performance.' },
+            { title: 'Brand Deployment', desc: 'Translating visual identities into compelling web experiences.' },
+            { title: 'Maintenance', desc: 'Regular updates and speed optimizations to keep sites at peak performance.' },
+          ].map((service, idx) => (
             <motion.div
               key={service.title}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
+              className="space-y-6"
             >
-              <Card className="group relative p-10 h-full border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-950 shadow-card overflow-hidden transition-all duration-500 hover:-translate-y-2 rounded-3xl">
-                {/* Background Hover Effect */}
-                <div className="absolute inset-0 bg-slate-900 translate-y-[101%] group-hover:translate-y-0 transition-transform duration-500 ease-in-out z-0" />
-                
-                <div className="relative z-10 space-y-6">
-                  <div className="w-16 h-16 rounded-2xl bg-orange-50 dark:bg-slate-800 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white group-hover:scale-110 transition-all duration-500">
-                    <service.icon className="w-8 h-8" />
-                  </div>
-                  
-                  <div className="space-y-4 transition-colors duration-500 group-hover:text-white">
-                    <h3 className="text-2xl font-bold font-serif text-slate-900 dark:text-white group-hover:text-white">{service.title}</h3>
-                    <p className="text-slate-600 dark:text-slate-400 group-hover:text-slate-300 leading-relaxed font-light">
-                      {service.desc}
-                    </p>
-                  </div>
-
-                  <button className="flex items-center space-x-2 text-primary font-bold uppercase tracking-widest text-[10px] group-hover:text-primary-glow transition-colors duration-500">
-                    <span>Learn More</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </button>
-                </div>
-              </Card>
+              <div className="text-[10px] font-bold text-primary uppercase tracking-[0.3em]">
+                0{idx + 1} &mdash; {service.title}
+              </div>
+              <h3 className="text-2xl font-serif hover:italic transition-all cursor-default text-white">
+                {service.title}
+              </h3>
+              <p className="text-slate-500 text-xs leading-relaxed max-w-xs uppercase tracking-wider font-medium">
+                {service.desc}
+              </p>
             </motion.div>
           ))}
         </div>

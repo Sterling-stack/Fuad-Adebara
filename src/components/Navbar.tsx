@@ -38,49 +38,50 @@ export default function Navbar() {
     <nav
       className={cn(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-500 px-6 py-6',
-        scrolled ? 'bg-white/90 dark:bg-slate-950/90 backdrop-blur-md py-4 shadow-elegant border-b border-slate-100 dark:border-slate-800' : 'bg-transparent'
+        scrolled ? 'bg-black/98 backdrop-blur-md py-4 shadow-[0_4px_30px_rgba(0,0,0,0.5)] border-b border-white/5' : 'bg-transparent'
       )}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
-          className="text-2xl font-serif font-bold tracking-tighter text-slate-900 dark:text-white"
+          className="flex items-center space-x-2 text-sm font-bold uppercase tracking-[0.2em] text-white"
         >
-          Fuad<span className="text-primary">.</span>
+          <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+          <span>FUAD ADEBARA</span>
         </motion.div>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center space-x-10">
+        <div className="hidden md:flex items-center space-x-12">
           {navLinks.map((link) => (
             <button
               key={link.name}
               onClick={() => scrollToSection(link.href)}
-              className="text-[13px] font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-primary transition-colors focus:outline-none cursor-pointer"
+              className="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-400 hover:text-primary transition-colors focus:outline-none cursor-pointer"
             >
               {link.name}
             </button>
           ))}
-          <div className="flex items-center space-x-4">
-            <ThemeToggle />
-            <Button
-              className="bg-slate-900 text-white dark:bg-white dark:text-slate-900 hover:bg-primary dark:hover:bg-primary dark:hover:text-white transition-colors rounded-full px-8 shadow-elegant"
+          <div className="flex items-center space-x-6">
+            <button 
               onClick={() => scrollToSection('#contact')}
+              className="flex items-center space-x-3 bg-primary text-white px-6 py-2.5 rounded-full text-[10px] uppercase font-bold tracking-[0.2em] hover:bg-primary/80 transition-all shadow-[0_0_20px_rgba(168,85,247,0.3)]"
             >
-              Let's Talk
-            </Button>
+              <span>GET IN TOUCH</span>
+              <Menu className="w-3 h-3" />
+            </button>
           </div>
         </div>
 
         {/* Mobile Toggle */}
         <div className="md:hidden flex items-center space-x-4">
-          <ThemeToggle />
           <button 
             onClick={() => setIsOpen(!isOpen)} 
-            className="p-2 text-slate-900 dark:text-white hover:text-primary transition-colors"
+            className="flex items-center space-x-2 bg-primary text-white px-5 py-2 rounded-full text-[10px] uppercase font-bold tracking-widest shadow-[0_0_15px_rgba(168,85,247,0.3)]"
             aria-label="Toggle menu"
           >
-            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            <span>{isOpen ? 'CLOSE' : 'MENU'}</span>
+            {isOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
           </button>
         </div>
       </div>
