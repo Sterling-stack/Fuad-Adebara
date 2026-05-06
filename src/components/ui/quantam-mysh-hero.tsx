@@ -2,7 +2,7 @@ import React from 'react';
 
 const HeroSection = () => {
   return (
-    <div className="bg-black text-white w-full min-h-[90vh] flex flex-col justify-center relative max-w-screen overflow-x-hidden font-sans border-b border-white/5 pt-24">
+    <div id="home" className="bg-black text-white w-full min-h-[90vh] flex flex-col justify-center relative max-w-screen overflow-x-hidden font-sans border-b border-white/5 pt-24">
       {/* Main Content */}
       <div className="flex flex-col items-center text-center px-10 z-10">
         <div className="flex items-center bg-purple-900/20 border border-purple-600/50 rounded-full pl-2 pr-4 py-1 text-purple-400 text-[10px] md:text-xs mb-8 tracking-[0.2em] font-light uppercase">
@@ -19,8 +19,18 @@ const HeroSection = () => {
         <p className="text-sm md:text-base max-w-xl mb-12 font-light text-slate-500">I build high-performance, conversion-focused websites that bring your brand's vision to life with technical precision and creative flair.</p>
         
         <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6 mb-20">
-          <button className="bg-white text-black px-10 py-4 cursor-pointer hover:bg-purple-200 rounded-full text-xs font-bold uppercase tracking-[0.2em] transition-all shadow-[0_10px_20px_rgba(255,255,255,0.1)]">Connect With Us</button>
-          <button className="bg-purple-600/10 text-white px-10 py-4 cursor-pointer hover:bg-purple-600 rounded-full text-xs font-bold uppercase tracking-[0.2em] border border-purple-500/30 transition-all backdrop-blur-sm">View Work</button>
+          <button 
+            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+            className="bg-purple-600 text-white px-10 py-4 cursor-pointer hover:bg-purple-700 rounded-full text-xs font-bold uppercase tracking-[0.2em] transition-all shadow-[0_0_20px_rgba(168,85,247,0.3)]"
+          >
+            Connect With Us
+          </button>
+          <button 
+            onClick={() => document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' })}
+            className="bg-white/5 text-white px-10 py-4 cursor-pointer hover:bg-white/10 rounded-full text-xs font-bold uppercase tracking-[0.2em] border border-white/10 transition-all backdrop-blur-sm"
+          >
+            View Work
+          </button>
         </div>
 
         {/* Infinite Moving Fading Carousel */}

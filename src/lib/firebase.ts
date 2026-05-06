@@ -10,5 +10,18 @@ export const db = firebaseConfig.firestoreDatabaseId && firebaseConfig.firestore
   ? getFirestore(app, firebaseConfig.firestoreDatabaseId)
   : getFirestore(app);
 
-// Cleanup database check - we don't need this noisy test in production or dev if it's failing due to platform restrictions
 export const auth = getAuth(app);
+
+// Mandatory connection test as per integration guidelines
+async function testConnection() {
+  try {
+    await getDocFromServer(doc(db, 'test', 'connection'));
+  } catch (error) {
+    if (error instanceof Error && error.message.includes('the client is offline')) {
+      console.error("Please check your Firebase configuration.");
+    }
+    console.error("Firestore connectivity check failed:", error);
+  }
+}
+
+testConnection();

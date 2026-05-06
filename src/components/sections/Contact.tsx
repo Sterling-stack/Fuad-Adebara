@@ -7,6 +7,7 @@ import { Mail, Phone, MapPin, Send, MessageCircle, Twitter, Linkedin, Instagram,
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from '../../lib/firebase';
 import { toast } from 'sonner';
+import { handleFirestoreError, OperationType } from '@/lib/firestore-errors';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -32,16 +33,17 @@ export default function Contact() {
   });
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    const path = 'submissions';
     try {
-      await addDoc(collection(db, 'submissions'), {
+      await addDoc(collection(db, path), {
         ...values,
         createdAt: serverTimestamp(),
       });
       toast.success("Message sent successfully! We'll get back to you soon.");
       form.reset();
     } catch (error) {
-      console.error("Error submitting form:", error);
       toast.error("Failed to send message. Please try again.");
+      handleFirestoreError(error, OperationType.WRITE, path);
     }
   };
 

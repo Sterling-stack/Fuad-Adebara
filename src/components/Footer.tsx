@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
+import { Link } from 'react-router-dom';
 import { Twitter, Linkedin, Instagram, Github, Dribbble, ArrowUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -49,6 +50,11 @@ export default function Footer() {
                   </a>
                 </li>
               ))}
+              <li>
+                <Link to="/admin" className="text-sm text-slate-600 hover:text-primary transition-colors font-bold uppercase tracking-widest text-[9px] hover:pl-2 transition-all">
+                   Admin Dashboard
+                </Link>
+              </li>
             </ul>
           </div>
 

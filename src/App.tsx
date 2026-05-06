@@ -16,6 +16,12 @@ import Contact from './components/sections/Contact';
 import Footer from './components/Footer';
 
 // Admin Pages
+import AdminLayout from './components/admin/AdminLayout';
+import AdminDashboard from './components/admin/AdminDashboard';
+import ProjectManager from './components/admin/ProjectManager';
+import TestimonialManager from './components/admin/TestimonialManager';
+import ContactInbox from './components/admin/ContactInbox';
+import AdminSettings from './components/admin/AdminSettings';
 
 import { ThemeProvider } from './components/theme-provider';
 
@@ -40,11 +46,26 @@ function MainWebsite() {
 
 export default function App() {
   return (
-    <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+    <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
       <AuthProvider>
         <Router>
           <Routes>
+            {/* Public Site */}
             <Route path="/" element={<MainWebsite />} />
+            
+            {/* Admin Routes (Publicly Accessible) */}
+            <Route path="/admin">
+              <Route element={<AdminLayout children={<AdminDashboard />} />}>
+                <Route index element={<AdminDashboard />} />
+              </Route>
+              <Route path="projects" element={<AdminLayout children={<ProjectManager />} />} />
+              <Route path="testimonials" element={<AdminLayout children={<TestimonialManager />} />} />
+              <Route path="inquiries" element={<AdminLayout children={<ContactInbox />} />} />
+              <Route path="settings" element={<AdminLayout children={<AdminSettings />} />} />
+            </Route>
+
+            {/* Catch All */}
+            <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </Router>
         <Toaster position="top-right" richColors />

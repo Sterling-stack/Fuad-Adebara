@@ -29,27 +29,35 @@ service cloud.firestore {
     }
 
     // --- Collection Rules ---
+    function isAdmin() {
+      return isSignedIn(); // For simplicity, any authenticated user for now, as this is a personal portfolio
+    }
 
-    // Public Collections (Read-only for public)
+    // Public Collections (Read-only for public, Full access for Admin)
     match /projects/{projectId} {
       allow read: if true;
+      allow write: if isAdmin();
     }
 
     match /skills/{skillId} {
       allow read: if true;
+      allow write: if isAdmin();
     }
 
     match /services/{serviceId} {
       allow read: if true;
+      allow write: if isAdmin();
     }
 
     match /testimonials/{testimonialId} {
       allow read: if true;
+      allow write: if isAdmin();
     }
 
     // Contact Submissions
     match /submissions/{submissionId} {
       allow create: if isValidId(submissionId) && isValidSubmission(incoming());
+      allow read, delete: if isAdmin();
     }
   }
 }
